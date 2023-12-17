@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Compiler</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Mini Compiler</h2>
+
+<textarea id="codeTextArea" placeholder="Enter your code here..."></textarea>
+
+<button onclick="openFile()">Open File</button>
+<button onclick="lexicalAnalysis()" id="lexicalButton" disabled>Lexical Analysis</button>
+<button onclick="syntaxAnalysis()" id="syntaxButton" disabled>Syntax Analysis</button>
+<button onclick="semanticAnalysis()" id="semanticButton" disabled>Semantic Analysis</button>
+<button onclick="clearAll()">Clear</button>
+
+<textarea id="resultTextArea" placeholder="Result..." disabled></textarea>
+
+<script>
+    let fileContents = "";
+
+    function openFile() {
+        const input = document.createElement('input');
+        input.type = 'file';
+
+        input.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    fileContents = e.target.result;
+                    document.getElementById('codeTextArea').value = fileContents;
+
+                    // Enable buttons
+                    document.getElementById('lexicalButton').disabled = false;
+                    document.getElementById('syntaxButton').disabled = true;
+                    document.getElementById('semanticButton').disabled = true;
+                };
+
+                reader.readAsText(file);
+            }
+        });
+
+        input.click();
+    }
+
+    function lexicalAnalysis() {
+        // Perform Lexical Analysis (Replace this with your actual logic)
+        const code = document.getElementById('codeTextArea').value;
+
+        // Send a POST request to the server
+        fetch('http://localhost:3000/compile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: code,
+
+        // Enable/disable buttons accordingly
+        document.getElementById('lexicalButton').disabled = true;
+        document.getElementById('syntaxButton').disabled = false;
+        document.getElementById('semanticButton').disabled = true;
+    }
+
+    function syntaxAnalysis() {
+        // Perform Syntax Analysis (Replace this with your actual logic)
+        const result = "Syntax Analysis Phase Passed";
+        document.getElementById('resultTextArea').value = result;
+
+        // Enable/disable buttons accordingly
+        document.getElementById('lexicalButton').disabled = true;
+        document.getElementById('syntaxButton').disabled = true;
+        document.getElementById('semanticButton').disabled = false;
+    }
+
+    function semanticAnalysis() {
+        // Perform Semantic Analysis (Replace this with your actual logic)
+        const result = "Semantic Analysis Phase Passed";
+        document.getElementById('resultTextArea').value = result;
+
+        // Enable/disable buttons accordingly
+        document.getElementById('lexicalButton').disabled = true;
+        document.getElementById('syntaxButton').disabled = true;
+        document.getElementById('semanticButton').disabled = true;
+    }
+
+    function clearAll() {
+        // Reset everything
+        document.getElementById('codeTextArea').value = "";
+        document.getElementById('resultTextArea').value = "";
+
+        // Disable buttons
+        document.getElementById('lexicalButton').disabled = true;
+        document.getElementById('syntaxButton').disabled = true;
+        document.getElementById('semanticButton').disabled = true;
+    }
+</script>
+
+</body>
+</html>

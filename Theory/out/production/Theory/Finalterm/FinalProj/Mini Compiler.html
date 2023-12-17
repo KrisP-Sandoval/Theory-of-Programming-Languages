@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Compiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Mini Compiler</h1>
+
+<button onclick="openFile()">Open File</button>
+<button id="lexicalBtn" onclick="lexicalAnalysis()" disabled>Lexical Analysis</button>
+<button id="syntaxBtn" onclick="syntaxAnalysis()" disabled>Syntax Analysis</button>
+<button id="semanticBtn" onclick="semanticAnalysis()" disabled>Semantic Analysis</button>
+<button onclick="clearAll()">Clear</button>
+
+<textarea id="codeTextArea" placeholder="Enter your code here"></textarea>
+<textarea id="resultTextArea" placeholder="Result will be displayed here"></textarea>
+
+<script>
+        let codeTextArea = document.getElementById('codeTextArea');
+        let resultTextArea = document.getElementById('resultTextArea');
+        let lexicalBtn = document.getElementById('lexicalBtn');
+        let syntaxBtn = document.getElementById('syntaxBtn');
+        let semanticBtn = document.getElementById('semanticBtn');
+
+        function openFile() {
+            // Logic to open a file and populate codeTextArea
+            // Enable/disable buttons accordingly
+            lexicalBtn.disabled = false;
+            syntaxBtn.disabled = true;
+            semanticBtn.disabled = true;
+        }
+
+        function lexicalAnalysis() {
+            // Logic for Lexical Analysis
+            // Update resultTextArea accordingly
+            resultTextArea.value = "Lexical Analysis Phase Passed";
+            syntaxBtn.disabled = false;
+            lexicalBtn.disabled = true;
+        }
+
+        function syntaxAnalysis() {
+            // Logic for Syntax Analysis
+            // Update resultTextArea accordingly
+            resultTextArea.value = "Syntax Analysis Phase Passed";
+            semanticBtn.disabled = false;
+            syntaxBtn.disabled = true;
+        }
+
+        function semanticAnalysis() {
+            // Logic for Semantic Analysis
+            // Update resultTextArea accordingly
+            resultTextArea.value = "Semantic Analysis Phase Passed";
+            semanticBtn.disabled = true;
+        }
+
+        function clearAll() {
+            // Logic to clear everything
+            codeTextArea.value = "";
+            resultTextArea.value = "";
+            lexicalBtn.disabled = true;
+            syntaxBtn.disabled = true;
+            semanticBtn.disabled = true;
+        }
+    </script>
+</body>
+</html>

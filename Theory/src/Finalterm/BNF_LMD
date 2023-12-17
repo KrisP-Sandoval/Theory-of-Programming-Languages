@@ -1,0 +1,20 @@
+LMD
+                            <expression>
+                                  |
+                                <term>
+                                /   \
+                           <term> / <factor>
+                              |         |
+                        <factor>      (<expression>)
+                           |                      |
+                (<expression>)              (<expression> - <term>)
+                  |                               |            |
+          (<expression> + <term>)              <term>     - <factor>
+                  |          |                    |            |
+               <term>   + <factor>            <factor>    - <number>
+                  |          |                    |            |
+              <factor>  + <number>            <number>    -    9
+                  |          |                    |
+               <number>      7                    8
+                  |
+                  6
